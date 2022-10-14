@@ -1,0 +1,29 @@
+<!-- <div>
+  <span style="margin-left: 8px" class="pointer"  *ngIf="path" >
+    <mat-icon>arrow_back</mat-icon>{{path}}
+  </span>
+
+</div> -->
+<mat-grid-list cols="4" rowHeight="1:1">
+  <mat-grid-tile *ngFor="let item of folderdata; let i = index  ">
+    <mat-icon (contextmenu)="onRightClick($event, {content: item ,index:i})"
+      (click)=" item.isFolder?   OnClick(item) : ' '" color="primary"
+      [ngClass]="{'file-or-folder-icon-pointer ':item.isFolder, 'file-or-folder-icon':!item.isFolder}">{{item.isFolder ?
+      "folder"
+      : "insert_drive_file"}}
+    </mat-icon>
+    <p style="display: flex;">{{item.name}}</p>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<div style="visibility: hidden; position: fixed;" [style.left.px]="menuTopLeftPosition.x"
+  [style.top.px]="menuTopLeftPosition.y" [matMenuTriggerFor]="rightMenu"></div>
+
+<!-- standar material menu -->
+<mat-menu #rightMenu="matMenu">
+  <ng-template matMenuContent let-item="item">
+    <!-- <button mat-menu-item (click)="changeType(item.index)">Change Type</button> -->
+    <button mat-menu-item (click)="Opendialog(item.content.name,item.content.id)">Edit Name</button>
+    <button mat-menu-item (click)="removeFile(item.content.referenceId)  ">Delete</button>
+  </ng-template>
+</mat-menu>

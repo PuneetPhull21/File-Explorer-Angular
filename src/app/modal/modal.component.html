@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Hi </h1>
+<div mat-dialog-content>
+  <p>{{data.msg === 'folder' ? "You want to create the Folder" : "You want to create the File"}}</p>
+  <mat-form-field appearance="fill">
+    <mat-label>Folder name</mat-label>
+    <input matInput [(ngModel)]="data.name" placeholder="Please enter the name of the folder">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>
+
+
+
+

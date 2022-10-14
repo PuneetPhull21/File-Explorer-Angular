@@ -1,0 +1,29 @@
+<h1 style="text-align: center; color:blue; ">File Explorer</h1>
+<div class="container">
+  <mat-icon color="primary" class="file-or-folder-icon pointer " (click)="Opendialog('folder')">create_new_folder
+  </mat-icon>
+  <h2>Create Folder</h2>
+  <br>
+  <mat-icon color="primary" class="file-or-folder-icon pointer " (click)="Opendialog('file')">
+    create_new_insert_drive_file
+  </mat-icon>
+  <h2>Create File</h2>
+</div>
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+
+    <mat-card-title>
+      <a class="pointer">
+        <mat-icon (click)="_goBackSingle()" *ngIf="navigation.length >1">arrow_back</mat-icon>
+      </a>
+      <ng-container *ngFor="let item of navigation , let i = index">
+        <a class="pointer" (click)="_dynamicNavigation(item,i)"> <span> {{item.name}}/</span> </a>
+      </ng-container>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-spinner *ngIf="spinner"></mat-spinner>
+  <app-filemanager (removeElement)="removequery($event)" [folderdata]="folderData"
+    (renameFolderid)="renameFolder($event)" (Navigate)="NavigateToFolder($event)">
+  </app-filemanager>
+</mat-card>
